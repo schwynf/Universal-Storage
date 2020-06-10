@@ -1,7 +1,7 @@
 $(document).ready(() => {
+  const passForm = $("#pass-form");
   /*global CryptoJS, API*/
   /*eslint no-undef: "error"*/
-  const passForm = $("#pass-form");
   var API = {
     saveExample: (data) => {
       $.ajax({
