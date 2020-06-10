@@ -1,3 +1,71 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+select {
+  font-family: 'FontAwesome', 'sans-serif'
+}
+
+.veryDark {
+  background-color: #212121;
+}
+
+body {
+  background-color: #323232;
+}
+
+.card {
+  background-color: #212121;
+  color: #cccccc;
+}
+
+.table {
+  color: #cccccc;
+}
+
+.card-header {
+  border-color: #cccccc;
+}
+
+hr {
+  border-top: 1px solid #cccccc;
+}
+
+.lightDark {
+  background-color: #323232;
+}
+
+.Gbtn {
+  border: none;
+  background-color: hsl(360, 91%, 36%);
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(0, 0%, 100%);
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  padding: 14px 34px;
+  text-align: center;
+  cursor: pointer;
+}
+#generatePassword {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  display: block;
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 85px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px dashed #c0c7cf;
+  border-radius: 6px;
+  resize: none;
+  overflow: hidden;
+}

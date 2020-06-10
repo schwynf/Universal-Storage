@@ -8,12 +8,17 @@ require("../config/passport")(passport);
 router.use(passport.initialize());
 router.use(passport.session());
 
-router.get("/users", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     if (req.user) {
+      // Danyal's example just finds all users in the database
       const data = await db.user.findAll();
+      // then passes that info down to handlebars to be renders on the screen(line 20)
 
-      res.render("user", { users: data });
+      // instead of user data, we will need to search for only the signed in users passwords in our database, then pass that down to handlebars to be rendered
+
+      res.render("user", { users: data , user: req.user });
+      // res.render("user", {passwords: data})
     } else {
       res.redirect("/login");
     }
@@ -23,6 +28,8 @@ router.get("/users", async (req, res) => {
     res.status(500).send();
   }
 });
+
+// we will also need a POST route to /users to add passwords
 
 router.get(
   "/api/users",

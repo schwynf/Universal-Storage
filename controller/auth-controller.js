@@ -26,13 +26,13 @@ router.use(passport.session());
 
 router.use(cookieParser());
 
-router.get("/", (req, res) => {
-  if (req.user) {
-    res.render("index", { user: req.user });
-  } else {
-    res.redirect("/login");
-  }
-});
+// router.get("/", (req, res) => {
+//   if (req.user) {
+//     res.render("index", { user: req.user });
+//   } else {
+//     res.redirect("/login");
+//   }
+// });
 
 router.get("/login", (req, res) => {
   res.render("login", { message: req.flash("error") });
