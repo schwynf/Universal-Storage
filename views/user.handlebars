@@ -1,29 +1,77 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each users}}
-                    <tr>
-                        <td>{{id}}</td>
-                        <td>{{email}}</td>
-                        <td>{{password}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+{{>header}}
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card my-5 h-100">
+                        <div class="card-header">
+                            <h1 class="text-center">Add a new password</h1>
+                        </div>
+                        <div class="card-body p-2 d-flex justify-content-center align-items-center">
+                            <div class="">
+                                <form class="form-inline" id="pass-form">
+                                    <div class="form-group p-2">
+                                        <label class="px-2" for="site">Site: </label>
+                                        <select class="form-control form-control-lg fa" name="site" id="site">
+                                            <option value="Facebook">&#xf082; Facebook</option>
+                                            <option value="Instagram">&#xf16d; Instagram</option>
+                                            <option value="Twitter">&#xf099; Twitter</option>
+                                            <option value="LinkedIn">&#xf08c; LinkedIn</option>
+                                            <option value="Email">&#xf0e0; Email</option>
+                                            <option value="Snapchat">&#xf2ad; Snapchat</option>
+                                            <option value="Youtube">&#xf167; Youtube</option>
+                                            <option value="Github">&#xf092; Github</option>
+                                            <option value="Other">&#xf084; Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group px-2">
+                                        <label class="px-2" for="username">Email/ Username: </label>
+                                        <input id="username" type="text" name="username"
+                                            placeholder="johndoe@email.com">
+                                    </div>
+                                    <div class="form-group px-2">
+                                        <label class="px-2" for="username">Password: </label>
+                                        <input id="password" aria-required="true" type="text" name="password"
+                                            placeholder="********">
+                                    </div>
+                                    <button id="password-submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <a href="/" class="btn btn-success">Home</a>
+        <div class="col-md-6">
+            <div class="row h-100">
+                <div class="col-12">
+                    <div class="card my-5 h-100">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Site</th>
+                                    <th scope="col">Email/Username</th>
+                                    <th scope="col">Password</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each users}}
+                                <tr>
+                                    <td>{{id}}</td>
+                                    <td>{{email}}</td>
+                                    <td>{{password}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
