@@ -8,6 +8,7 @@ select {
 
 .veryDark {
   background-color: #212121;
+  color: #cccccc;
 }
 
 body {
@@ -16,7 +17,6 @@ body {
 
 .card {
   background-color: #212121;
-  color: #cccccc;
 }
 
 .table {
@@ -33,6 +33,7 @@ hr {
 
 .lightDark {
   background-color: #323232;
+  color: #cccccc;
 }
 
 .Gbtn {

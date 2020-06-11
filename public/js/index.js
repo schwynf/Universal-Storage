@@ -3,30 +3,36 @@ $(document).ready(() => {
   /*global CryptoJS, API*/
   /*eslint no-undef: "error"*/
   var API = {
-    saveExample: (data) => {
-      $.ajax({
-        headers: {
-          "Content-Type": "application/json"
-        },
-        type: "POST",
-        url: "/users",
-        data: JSON.stringify(data)
-      });
+    saveExample: async (data) => {
+      try {
+        const res = await $.ajax({
+          headers: {
+            "Content-Type": "application/json"
+          },
+          type: "POST",
+          url: "/api/passwords",
+          data: JSON.stringify(data)
+        });
+        return res;
+      } catch (error) {
+        console.error(error)
+      }
     },
-    getExamples: () => {
-      return $.ajax({
-        url: "api/examples",
+    getExamples: async () => {
+      const data = await $.ajax({
+        url: "/api/passwords",
         type: "GET"
       });
+      return data;
     },
-    deleteExample: (id) => {
-      return $.ajax({
-        url: "api/examples/" + id,
+    deleteExample: async (id) => {
+      const data = await $.ajax({
+        url: "/api/passwords" + id,
         type: "DELETE"
       });
+      return data;
     }
   };
-
   class entry {
     constructor(site, username, password) {
       this.site = site;
@@ -34,93 +40,140 @@ $(document).ready(() => {
       this.password = password;
     }
   }
-  $(passForm).submit((e) => {
-    e.preventDefault();
-    const site = $("#site").val().trim();
-    const username = $("#username").val().trim();
-    const password = $("#password").val().trim();
-    const encrypted = CryptoJS.AES.encrypt(password, `${site}${username}`);
-    const data = new entry(site, username, encrypted.toString());
-    // API.saveExample(data);
-  });
+  const site = $("#site")
+  const username = $("#username")
+  const password = $("#password")
+  const submitBtn = $("#password-submit")
+  const cardRow = $("#password-card")
+
+  var refreshExamples = async () => {
+    try {
+      const data = await API.getExamples()
+      const cards = data.map(entry => {
+        const unencrypted = CryptoJS.AES.decrypt(entry.password, `${entry.site}${entry.username}`)
+        const password = $("<p>")
+          .text(unencrypted.toString(CryptoJS.enc.Utf8))
 
 
-});
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+        const username = $("<p>")
+          .text(entry.username)
 
-// The API object contains methods for each kind of request we'll make
+        const rightDiv = $("<div>")
+          .attr({
+            class: "p-2"
+          })
+          .append([password, username])
 
+        let className;
 
+        switch (entry.site) {
+          case "Facebook":
+            className = "fab fa-facebook-square fa-3x"
+            break;
+          case "Twitter":
+            className = "fab fa-twitter fa-3x"
+            break;
+          case "Instagram":
+            className = "fab fa-instagram fa-3x"
+            break;
+          case "LinkedIn":
+            className = "fab fa-linkedin-in fa-3x"
+            break;
+          case "Email":
+            className = "fab fa-envelope fa-3x"
+            break;
+          case "Snapchat":
+            className = "fab fa-snapchat-square fa-3x"
+            break;
+          case "Youtube":
+            className = "fab fa-youtube fa-3x"
+            break;
+          case "Github":
+            className = "fab fa-github-square fa-3x"
+            break;
+          case "Other":
+            className = "fab fa-key fa-3x"
+            break;
 
+          default:
+            className = "fab fa-key fa-3x"
+            break;
+        }
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        const icon = $("<i>")
+          .attr({
+            class: className
+          })
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+        const leftDiv = $("<div>")
+          .attr({
+            class: "d-flex align-items-center p-2"
+          })
+          .append(icon)
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+        const cardBody = $("<div>")
+          .attr({
+            class: "card-body d-flex flex-row"
+          })
+          .append([leftDiv, rightDiv])
 
-      $li.append($button);
+        const card = $("<div>")
+          .attr({
+            class: "card my-2 lightDark",
+            "data-id": entry.id
+          })
+          .append(cardBody)
 
-      return $li;
-    });
+        const col = $("<div>")
+          .attr({
+            class: "col-12"
+          })
+          .append(card)
 
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
+        const row = $("<div>")
+          .attr({
+            class: "row"
+          })
+          .append(col)
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function (event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+        return row;
+      });
+      cardRow.empty()
+      cards.forEach(card => {
+        cardRow.prepend(card)
+      })
+    } catch (error) {
+      console.error(error)
+    }
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+  var handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  API.saveExample(example).then(function () {
-    refreshExamples();
-  });
+    const siteText = site.val().trim()
+    const passText = password.val().trim()
+    const userText = username.val().trim()
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+    if (userText == "" || passText == "") {
+      alert("Please fill out all input fields");
+      return;
+    }
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+    const encrypted = CryptoJS.AES.encrypt(passText, `${siteText}${userText}`)
 
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
-  });
-};
+    const data = new entry(siteText, userText, encrypted.toString());
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+    console.log(data)
+    await API.saveExample(data)
+    await refreshExamples();
+
+
+    password.val("");
+    username.val("");
+  };
+
+  refreshExamples();
+
+  submitBtn.on('click', handleFormSubmit)
+});
+

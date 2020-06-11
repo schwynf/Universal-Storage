@@ -1,10 +1,10 @@
 {{>header}}
 <div class="container-fluid h-100">
-    <div class="row h-100">
+    <div class="row">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <div class="card my-5 h-100">
+                    <div class="card my-5 veryDark">
                         <div class="card-header">
                             <h1 class="text-center">Add a new password</h1>
                         </div>
@@ -42,34 +42,24 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
+                    <div id="password-card" class="card my-5 p-3 veryDark">
+                        {{!-- pw cards get appended here --}}
+                       
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row h-100">
+    </div>
+    <div class="row my-5">
+        <div class="col-12">
+            <div class="row">
                 <div class="col-12">
-                    <div class="card my-5 h-100">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Site</th>
-                                    <th scope="col">Email/Username</th>
-                                    <th scope="col">Password</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each users}}
-                                <tr>
-                                    <td>{{id}}</td>
-                                    <td>{{email}}</td>
-                                    <td>{{password}}</td>
-                                </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
+                    {{!-- planned on adding pw generator/ pwned API search here --}}
                 </div>
             </div>
         </div>
