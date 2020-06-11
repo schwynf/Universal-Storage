@@ -11,14 +11,7 @@ router.use(passport.session());
 router.get("/", async (req, res) => {
   try {
     if (req.user) {
-      // Danyal's example just finds all users in the database
-      const data = await db.user.findAll();
-      // then passes that info down to handlebars to be renders on the screen(line 20)
-
-      // instead of user data, we will need to search for only the signed in users passwords in our database, then pass that down to handlebars to be rendered
-
-      res.render("user", { users: data , user: req.user });
-      // res.render("user", {passwords: data})
+      res.render("user", { user: req.user });
     } else {
       res.redirect("/login");
     }
