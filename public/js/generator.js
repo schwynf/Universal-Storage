@@ -1,13 +1,18 @@
 $(document).ready(()=>{
 
     $("#generateBtn").on("click", function(){
+        console.log("works")
         $.ajax({
-                url:"/generator",
+                url:"/api/generator",
                 method:"GET"
             })
             .then(function(response){
                 console.log(response);
-                $("#passwordResult").text(response);
+                $("#passwordResult")
+                .attr({
+                    class: "pt-5 text-center",
+                    id: "generated"
+                }).text(response);
             
             })
     })

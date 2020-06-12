@@ -3,11 +3,6 @@ const passport = require("passport");
 const router = express.Router();
 const db = require("../models");
 
-// Passport
-require("../config/passport")(passport);
-router.use(passport.initialize());
-router.use(passport.session());
-
 router.get("/", async (req, res) => {
   try {
     if (req.user) {
@@ -21,8 +16,6 @@ router.get("/", async (req, res) => {
     res.status(500).send();
   }
 });
-
-// we will also need a POST route to /users to add passwords
 
 router.get(
   "/api/users",
