@@ -6,7 +6,8 @@ const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-ac
 const authController = require("./controller/auth-controller");
 const userController = require("./controller/user-controller");
 const historyController = require("./controller/history-controller");
-const passwordController = require("./controller/password-controller")
+const passwordController = require("./controller/password-controller");
+const generatorController = require("./controller/generator-controller");
 
 const db = require("./models");
 
@@ -34,6 +35,7 @@ app.use(authController);
 app.use(userController);
 app.use(historyController);
 app.use(passwordController);
+app.use(generatorController);
 
 const syncOptions = { force: false };
 
