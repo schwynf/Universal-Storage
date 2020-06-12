@@ -32,10 +32,5 @@
             "error",
             "always"
         ]
-        // ,
-        // "no-undef": [
-        //     "warn",
-        //     "always"
-        // ]
     }
 }

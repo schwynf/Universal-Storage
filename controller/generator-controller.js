@@ -6,7 +6,7 @@ const axios = require('axios');
 
 let generatorURL = "https://www.passwordrandom.com/query?command=password&format=json&count=1";
    
-router.get("/generator",async(req,res)=>{
+router.get("/api/generator",async(req,res)=>{
 
     try {
         axios
