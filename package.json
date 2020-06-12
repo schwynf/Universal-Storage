@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
