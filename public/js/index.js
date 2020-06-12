@@ -1,4 +1,8 @@
+/*global refreshExamples, submitBtn, cardRow, deleteButtons,handleFormSubmit, handleDeleteBtnClick, handleDeleteBtnClick*/
+/*eslint no-undef: "error"*/
 $(document).ready(() => {
+<<<<<<< HEAD
+=======
   const passForm = $("#pass-form");
   
   /*global CryptoJS, API*/
@@ -173,8 +177,10 @@ $(document).ready(() => {
     username.val("");
   };
 
+>>>>>>> f61dc576065402a10b62f96892dfaac259b40847
   refreshExamples();
-
-  submitBtn.on('click', handleFormSubmit)
+  submitBtn.on("click", handleFormSubmit);
+  cardRow.on("click", ".del-btn", handleDeleteBtnClick);
+  deleteButtons.on("click", handleDeleteBtnClick);
 });
 
