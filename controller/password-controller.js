@@ -30,15 +30,15 @@ router.get("/api/passwords", async(req,res) => {
 router.post("/api/passwords", async (req,res) => {
   try {
     if (req.user) {
-      req.body.userId = req.user.dataValues.id
-      const data = await db.passwords.create(req.body)
+      req.body.userId = req.user.dataValues.id;
+      const data = await db.passwords.create(req.body);
       res.json(data);
     }
     else {
       res.redirect("/login");
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 });
 
