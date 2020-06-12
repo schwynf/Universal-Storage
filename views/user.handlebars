@@ -1,10 +1,10 @@
 {{>header}}
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row my-5">
+        <div class="col-lg-6">
             <div class="row">
                 <div class="col-12">
-                    <div class="card my-5 veryDark">
+                    <div id="add-card" class="card veryDark">
                         <div class="card-header">
                             <h1 class="text-center">Add a new password</h1>
                         </div>
@@ -43,27 +43,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-12">
-                     <div class="card my-5 veryDark">
-                         <div class="card-header">
-                            <h1 class="text-center">Password Generator</h1>
-                        </div>
-                        <div class="card-body">
-                            <button type="button"  class="btn btn-outline-light btn-block" id="generateBtn">Click to Generate</button>
-                            <div id="passwordBox"></div>
-                        </div>
-                     </div>
-                </div>
-
-            </div>
-
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="row">
                 <div class="col-12">
-                    <div style="height: 500px;" class="card my-5 veryDark overflow-auto">
+                    <div id="stored-card" class="card veryDark overflow-auto">
                         {{!-- pw cards get appended here --}}
                         <div class="card-header text-center">
                             <h3>Stored Passwords</h3>
@@ -81,9 +65,35 @@
     </div>
     <div class="row my-5">
         <div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    
+            <div class="card veryDark">
+                <div class="card-header">
+                    <h1 class="text-center">Password Generator</h1>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-outline-light btn-block" id="generateBtn">Click to
+                        Generate</button>
+                    <div id="passwordBox"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-12">
+            <div class="card veryDark">
+                <div class="card-header text-center">
+                    <h1>Have I Been Pwned?</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-6">
+                            <input placeholder="Enter a Password" type="text" class="w-100  text-center">
+                            <button class="btn btn-outline-light btn-block my-3" id="pwned-btn">Check Pwnage</button>
+                        </div>
+                        <div class="col-6">
+                            <input placeholder="Enter an Email" type="text" class="w-100 text-center">
+                            <button class="btn btn-outline-light btn-block my-3" id="pwned-btn">Check Pwnage</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

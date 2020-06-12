@@ -1,12 +1,36 @@
 /*global CryptoJS*/
 /*eslint no-undef: "error"*/
-
 const site = $("#site");
 const username = $("#username");
 const password = $("#password");
 const submitBtn = $("#password-submit");
 const cardRow = $("#password-card");
 const deleteButtons = $(".del-btn");
+const viewButtons = $(".view-btn")
+const generatedPass = $("#generated")
+const copyButton = $("#copy-btn")
+console.log(copyButton)
+
+
+const viewPassword = (e) => {
+  const passEl = $(e.target).parent().parent()[0].children[1].children[2];
+  const siteEl = ($(e.target).parent().parent()[0].children[1].children[0])
+  const userEl = ($(e.target).parent().parent()[0].children[1].children[1])
+  const siteText = $(siteEl).text();
+  const userText = $(userEl).text();
+  if ($(passEl).data().hidden === true) {
+    const unencrypted = CryptoJS.AES.decrypt($(passEl).data().encrypt, `${siteText}${userText}`);
+    const unencryptText = unencrypted.toString(CryptoJS.enc.Utf8)
+    $(passEl).text(unencryptText)
+    $(passEl).data().hidden = false
+    $(e.target).text("Hide")
+  }
+  else {
+    $(passEl).data().hidden = true
+    $(passEl).text($(passEl).data().encrypt.slice(0, 24));
+    $(e.target).text("View")
+  }
+};
 
 const API = {
   saveExample: async (data) => {
@@ -52,36 +76,50 @@ const refreshExamples = async () => {
   try {
     const data = await API.getExamples();
     if (typeof data === "object") {
-      console.log(data)
       const cards = data.map(entry => {
-        const unencrypted = CryptoJS.AES.decrypt(entry.password, `${entry.site}${entry.username}`);
         const password = $("<p>")
-          .text(unencrypted.toString(CryptoJS.enc.Utf8));
-  
-  
+          .text(entry.password.slice(0, 24))
+          .attr({
+            "data-encrypt": entry.password,
+            "data-hidden": true
+          });
+
+
         const site = $("<h5>")
           .text(entry.site)
           .attr({
             class: "pb-2"
           });
-  
+
         const username = $("<p>")
           .text(entry.username);
-  
+
+        const viewBtn = $("<button>")
+          .attr({
+            class: "btn btn-outline-light view-btn align-self-end mx-1 btn-block"
+          })
+          .text("View")
+
         const delBtn = $("<button>")
           .attr({
-            class: "btn btn-danger del-btn align-self-end"
+            class: "btn btn-danger del-btn align-self-end mx-1 btn-block"
           })
           .text("Delete");
-  
-        const rightDiv = $("<div>")
+
+          const rightDiv = $("<div>")
+          .attr({
+            class: "d-flex flex-column justify-content-around px-2"
+          })
+          .append([viewBtn, delBtn])
+
+        const centerDiv = $("<div>")
           .attr({
             class: "p-2 w-100"
           })
           .append([site, username, password]);
-  
+
         let className;
-  
+
         switch (entry.site) {
           case "Facebook":
             className = "fab fa-facebook-square fa-3x";
@@ -110,48 +148,48 @@ const refreshExamples = async () => {
           case "Other":
             className = "fas fa-key fa-3x";
             break;
-  
+
           default:
             className = "fas fa-key fa-3x";
             break;
         }
-  
+
         const icon = $("<i>")
           .attr({
             class: className
           });
-  
+
         const leftDiv = $("<div>")
           .attr({
             class: "d-flex align-items-center p-2"
           })
           .append(icon);
-  
+
         const cardBody = $("<div>")
           .attr({
             class: "card-body d-flex flex-row",
             "data-id": entry.id
           })
-          .append([leftDiv, rightDiv, delBtn]);
-  
+          .append([leftDiv, centerDiv, rightDiv]);
+
         const card = $("<div>")
           .attr({
             class: "card my-2 lightDark hvr-reveal",
           })
           .append(cardBody);
-  
+
         const col = $("<div>")
           .attr({
             class: "col-12"
           })
           .append(card);
-  
+
         const row = $("<div>")
           .attr({
             class: "row w-100"
           })
           .append(col);
-  
+
         return row;
       });
       cardRow.empty();
@@ -166,7 +204,7 @@ const refreshExamples = async () => {
       cards.forEach(card => {
         cardRow.prepend(card);
       });
-      }
+    }
   } catch (error) {
     console.error(error);
   }
@@ -197,7 +235,7 @@ var handleFormSubmit = async (event) => {
 };
 
 var handleDeleteBtnClick = async (e) => {
-  const idToDelete = parseInt($(e.target).parent()[0].dataset.id);
+  const idToDelete = parseInt($(e.target).parent().parent()[0].dataset.id);
 
   await API.deleteExample(idToDelete);
   refreshExamples();
@@ -205,9 +243,7 @@ var handleDeleteBtnClick = async (e) => {
 };
 
 const clickCopy = () => {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
+  $("#generated").select();
   document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
+  $("#copy-btn").text("Copied!")
+};
