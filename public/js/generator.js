@@ -8,55 +8,23 @@ $(document).ready(()=>{
             })
             .then(function(response){
                 console.log(response);
-                $("#passwordResult")
+                const pElement = $("<p>")
                 .attr({
                     class: "pt-5 text-center",
                     id: "generated"
-                }).text(response);
+                })
+                .text(response);
+                $("#passwordBox").empty();
+                $("#passwordBox").append(pElement);
             
             })
     })
 
-}
-
-
-)
+})
 
 
 
 
-
-
-
-
-// var API = {
-//     getAPI: function(){
-//         return $.ajax({
-//             url: generatorURL,
-//             type: "GET"
-//         });
-//     }
-// };
-
-// var newPassword = function(){
-//     API.getAPI().then(function(data){
-//         console.log(data);
-//         $("#passwordResult").text(data.char[0]);
-//     })
-// };
-
-// $("#generateBtn").on("click", function(){
-//     newPassword();
-// });
-
-// 
-
-
-
-// $("#generateBtn").on("click", function(){
-//         newPassword();
-
-// });
 
 
 

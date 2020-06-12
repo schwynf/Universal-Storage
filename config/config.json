@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password1",
+    "password": "mushroom",
     "database": "projecttwo_db",
     "host": "localhost",
     "dialect": "mysql"
