@@ -35,6 +35,10 @@ hr {
   background-color: #323232;
   color: #cccccc;
 }
+
+#stored-card, #add-card {
+  height: 30em;
+}
  /* custom scrollbar */ 
 
 /* width */
