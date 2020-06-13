@@ -8,6 +8,7 @@ $(document).ready(() => {
   submitBtn.on("click", handleFormSubmit);
   cardRow.on("click", ".del-btn", handleDeleteBtnClick);
   cardRow.on("click", ".view-btn", viewPassword);
-  $("#passwordBox").on("click", "#copy-btn", clickCopy)
+  $("#passwordBox").on("click", "#copy-btn", clickCopy);
+  pwnedPassBtn.on("click", pwnedAPI.submitPass)
 });
 

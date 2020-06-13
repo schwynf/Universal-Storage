@@ -3,14 +3,16 @@
 const site = $("#site");
 const username = $("#username");
 const password = $("#password");
-const submitBtn = $("#password-submit");
 const cardRow = $("#password-card");
+const generatedPass = $("#generated");
+const pwnedPassword = $("#pwned-pass");
+const pwnedEmail = $("#pwned-email");
+const submitBtn = $("#password-submit");
 const deleteButtons = $(".del-btn");
-const viewButtons = $(".view-btn")
-const generatedPass = $("#generated")
-const copyButton = $("#copy-btn")
-console.log(copyButton)
-
+const viewButtons = $(".view-btn");
+const copyButton = $("#copy-btn");
+const pwnedPassBtn = $("#pwned-pass-btn")
+const pwnedEmailBtn = $("#pwned-email-btn")
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];
@@ -210,8 +212,8 @@ const refreshExamples = async () => {
   }
 };
 
-var handleFormSubmit = async (event) => {
-  event.preventDefault();
+const handleFormSubmit = async (e) => {
+  e.preventDefault();
 
   const siteText = site.val().trim();
   const passText = password.val().trim();
@@ -234,7 +236,7 @@ var handleFormSubmit = async (event) => {
   username.val("");
 };
 
-var handleDeleteBtnClick = async (e) => {
+const handleDeleteBtnClick = async (e) => {
   const idToDelete = parseInt($(e.target).parent().parent()[0].dataset.id);
 
   await API.deleteExample(idToDelete);
@@ -247,3 +249,4 @@ const clickCopy = () => {
   document.execCommand("copy");
   $("#copy-btn").text("Copied!")
 };
+
