@@ -13,6 +13,8 @@ const viewButtons = $(".view-btn");
 const copyButton = $("#copy-btn");
 const pwnedPassBtn = $("#pwned-pass-btn")
 const pwnedEmailBtn = $("#pwned-email-btn")
+const pwnedDiv = $("#pwned-data");
+const pwnedCard = $("#pwned-card")
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];
@@ -212,7 +214,7 @@ const refreshExamples = async () => {
   }
 };
 
-const handleFormSubmit = async (e) => {
+const handleFormSubmit = async e => {
   e.preventDefault();
 
   const siteText = site.val().trim();
@@ -236,7 +238,7 @@ const handleFormSubmit = async (e) => {
   username.val("");
 };
 
-const handleDeleteBtnClick = async (e) => {
+const handleDeleteBtnClick = async e => {
   const idToDelete = parseInt($(e.target).parent().parent()[0].dataset.id);
 
   await API.deleteExample(idToDelete);
@@ -249,4 +251,9 @@ const clickCopy = () => {
   document.execCommand("copy");
   $("#copy-btn").text("Copied!")
 };
+
+const validateEmail = email => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 

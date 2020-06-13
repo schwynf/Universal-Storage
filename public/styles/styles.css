@@ -1,3 +1,15 @@
+body {
+  font-family: "Comfortaa";
+}
+
+
+
+.invalid {
+  background-color: #7e0000e0;
+  color: white;
+  border: 1px solid #7e0000e0;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
@@ -15,10 +27,6 @@ body {
   background-color: #323232;
 }
 
-.card {
-  background-color: #212121;
-}
-
 .table {
   color: #cccccc;
 }
@@ -34,6 +42,10 @@ hr {
 .lightDark {
   background-color: #323232;
   color: #cccccc;
+}
+
+.danger {
+  background-color: #c22d2d93;
 }
 
 #stored-card, #add-card {

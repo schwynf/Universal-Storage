@@ -10,6 +10,15 @@ $(document).ready(() => {
   cardRow.on("click", ".view-btn", viewPassword);
   $("#passwordBox").on("click", "#copy-btn", clickCopy);
   pwnedPassBtn.on("click", pwnedAPI.submitPass);
+  pwnedPassword.on("click", () => {
+    pwnedCard.removeClass("danger")
+    pwnedPassword.val("");
+    pwnedPassword.removeClass("invalid");
+  })
   pwnedEmailBtn.on("click", pwnedAPI.submitEmail);
-});
-
+  pwnedEmail.on("click", () => {
+    pwnedCard.removeClass("danger")
+    pwnedEmail.val("");
+    pwnedEmail.removeClass("invalid");
+  });
+})

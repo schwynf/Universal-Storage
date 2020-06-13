@@ -7,8 +7,12 @@ const pwnedKey = process.env.API_KEY;
 
 router.get("/api/pwned/password/:id", async (req, res) => {
   try {
-    const hashed = CryptoJs.SHA1(req.params.id).toString()
+    const hashed = CryptoJs.SHA1(req.params.id).toString();
+
     const firstFive = hashed.slice(0, 5)
+
+    const rest = hashed.slice(5, hashed.length).toUpperCase();
+
     const data = await axios.get(`https://api.pwnedpasswords.com/range/${firstFive}`, {
       headers: {
         "Content-Type": "application/json",
@@ -16,8 +20,16 @@ router.get("/api/pwned/password/:id", async (req, res) => {
       }
     });
     const resArr = data.data.split("\n")
-    res.json(resArr)
+    for (let index = 0; index < resArr.length; index++) {
+      const sliced = resArr[index].slice(0,35)
+     if (sliced == rest) {
+       console.log("_____")
+       console.log("matched")
+       res.json(sliced)
+     }
+    }
   } catch (error) {
+    console.error(error);
   }
 });
 
