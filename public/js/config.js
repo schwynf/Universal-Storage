@@ -13,6 +13,8 @@ const viewButtons = $(".view-btn");
 const copyButton = $("#copy-btn");
 const pwnedPassBtn = $("#pwned-pass-btn")
 const pwnedEmailBtn = $("#pwned-email-btn")
+const pwnedDiv = $("#pwned-data");
+const pwnedCard = $("#pwned-card")
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];

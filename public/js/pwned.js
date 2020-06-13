@@ -29,7 +29,19 @@ const pwnedAPI = {
   },
   getPwnedPass: async (password) => {
     const data = await $.get("/api/pwned/password/" + password);
-    console.log(data)
+    pwnedAPI.displayPassword(data)
+  },
+  displayPassword: (data) => {
+    pwnedDiv.empty()
+    if (data.length > 0) {
+      const pEl = $("<p>")
+      .text(`Oh no! Its looks like we found ${data.length} matches. Consider changing your credentials`)
+      .attr({
+        class: "text-center pt-3"
+      })
+      pwnedDiv.append(pEl)
+      pwnedCard.addClass("danger")
+    }
   }
 
 };
