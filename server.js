@@ -8,6 +8,7 @@ const userController = require("./controller/user-controller");
 const historyController = require("./controller/history-controller");
 const passwordController = require("./controller/password-controller");
 const generatorController = require("./controller/generator-controller");
+const pwnedController = require("./controller/pwned-controller");
 
 const db = require("./models");
 
@@ -36,6 +37,7 @@ app.use(userController);
 app.use(historyController);
 app.use(passwordController);
 app.use(generatorController);
+app.use(pwnedController);
 
 const syncOptions = { force: false };
 
