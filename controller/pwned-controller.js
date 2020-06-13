@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 const CryptoJs = require("crypto-js");
 
-const pwnedKey = "0da9d7acd6fd4fd8935c22fa096d90e4";
+const pwnedKey = process.env.API_KEY;
 
 router.get("/api/pwned/password/:id", async (req, res) => {
   try {

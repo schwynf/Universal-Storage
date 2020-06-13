@@ -15,6 +15,7 @@ const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
