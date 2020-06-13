@@ -2,6 +2,12 @@ body {
   font-family: "Comfortaa";
 }
 
+.invalid {
+  background-color: #7e0000e0;
+  color: white;
+  border: 1px solid #7e0000e0;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
