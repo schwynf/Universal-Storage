@@ -1,3 +1,7 @@
+body {
+  font-family: "Comfortaa";
+}
+
 .list-group-item {
   line-height: 2.5;
 }
