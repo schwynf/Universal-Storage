@@ -9,6 +9,7 @@ $(document).ready(() => {
   cardRow.on("click", ".del-btn", handleDeleteBtnClick);
   cardRow.on("click", ".view-btn", viewPassword);
   $("#passwordBox").on("click", "#copy-btn", clickCopy);
-  pwnedPassBtn.on("click", pwnedAPI.submitPass)
+  pwnedPassBtn.on("click", pwnedAPI.submitPass);
+  pwnedEmailBtn.on("click", pwnedAPI.submitEmail);
 });
 
