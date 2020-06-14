@@ -18,10 +18,14 @@ router.get("/api/pwned/password/:id", async (req, res) => {
     for (let index = 0; index < resArr.length; index++) {
       const sliced = resArr[index].slice(0,35);
      if (sliced == rest) {
-       return res.json(sliced);
+       return res.json({
+         sliced: sliced,
+          hashed: resArr[index],
+          match: true
+        });
      }
     }
-    return res.json({match: "NO-MATCH"});
+    return res.json({match: false});
   } catch (error) {
     console.error(error);
   }

@@ -37,21 +37,30 @@ const pwnedAPI = {
     const data = await $.get("/api/pwned/password/" + password);
     //spinner uninstalled
     $(".fa-spinner").remove();
-
-    if (data.match != "NO-MATCH"){
-      pwnedAPI.displayPassword(data);
-    }
+    pwnedAPI.displayPassword(data);
   },
   displayPassword: (data) => {
-    pwnedDiv.empty();
-    if (data.length > 0) {
+    if (data.match === true) {
+      data.hashed = data.hashed.slice(36, data.hashed.length);
+      pwnedDiv.empty();
       const pEl = $("<p>")
-      .text(`Oh no! Its looks like we found ${data.length} matches. Consider changing your credentials`)
-      .attr({
-        class: "text-center pt-3"
-      });
+        .text(`Oh no! Its looks like we found ${data.hashed} matches. Consider changing your credentials`)
+        .attr({
+          id: "match",
+          class: "text-center pt-3"
+        });
       pwnedDiv.append(pEl);
       pwnedCard.addClass("danger");
+      setTimeout(function () {
+        $("#match").remove();
+        pwnedCard.attr("class", "veryDark");
+      }, 5000);
+    } else {
+      pwnedCard.addClass("bg-success");
     }
+    setTimeout(function () {
+      $("#match").remove();
+      pwnedCard.attr("class", "veryDark");
+    }, 5000);
   }
 };
