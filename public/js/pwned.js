@@ -51,10 +51,6 @@ const pwnedAPI = {
         });
       pwnedDiv.append(pEl);
       pwnedCard.addClass("danger");
-      setTimeout(function () {
-        $("#match").remove();
-        pwnedCard.attr("class", "veryDark");
-      }, 5000);
     } else {
       pwnedCard.addClass("bg-success");
     }
