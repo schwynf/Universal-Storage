@@ -32,7 +32,6 @@ router.get("/api/pwned/password/:id", async (req, res) => {
 });
 router.get("/api/pwned/email/:id", async (req, res) => {
   try {
-    // const breaches = [];
     const data = await axios.get(`https://haveibeenpwned.com/api/v3/breachedaccount/${req.params.id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -41,6 +40,7 @@ router.get("/api/pwned/email/:id", async (req, res) => {
     });
     res.json(data.data);
   } catch (error) {
+    res.json({})
     console.error(error);
   }
 });

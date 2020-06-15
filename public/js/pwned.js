@@ -6,7 +6,6 @@ const pwnedAPI = {
       pwnedPassword.addClass("invalid");
     }
     else {
-      // console.log("no");
       pwnedAPI.getPwnedPass(passText);
       pwnedPassword.val("");
     }
@@ -114,7 +113,6 @@ const pwnedAPI = {
       })
     }
     else {
-      console.log("no matches")
       pwnedCard.removeClass("danger");
       pwnedCard.removeClass("bg-success");
       pwnedCard.addClass("bg-success");
