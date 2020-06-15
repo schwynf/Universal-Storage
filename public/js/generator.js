@@ -1,8 +1,22 @@
 $("#generateBtn").on("click", async () => {
+
+    const eleI = $("<div>")
+      .attr({
+        class: "spinner-border text-light m-3"
+      })
+    const spanEl = $("<span>")
+      .attr({
+        class: "sr-only"
+      })
+    eleI.append(spanEl);
+    $("#passwordBox").append(eleI);
+
     const response = await $.ajax({
         url: "/api/generator",
         method: "GET"
     })
+
+    eleI.remove();
     const generatedEl = $("<input>")
         .attr({
             class: "text-center form-control-plaintext my-3 veryDark ",
