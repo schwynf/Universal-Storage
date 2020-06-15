@@ -6,7 +6,6 @@ const pwnedAPI = {
       pwnedPassword.addClass("invalid");
     }
     else {
-      // console.log("no");
       pwnedAPI.getPwnedPass(passText);
       pwnedPassword.val("");
     }
@@ -24,39 +23,105 @@ const pwnedAPI = {
     }
   },
   getPwnedEmail: async (email) => {
+    pwnedDiv.empty();
+    const eleI = $("<div>")
+      .attr({
+        class: "spinner-border text-light m-3"
+      })
+    const spanEl = $("<span>")
+      .attr({
+        class: "sr-only"
+      })
+    eleI.append(spanEl)
+    $(pwnedDiv).append(eleI);
     const data = await $.get("/api/pwned/email/" + email);
-    // console.log(data);
+    eleI.remove()
+    pwnedAPI.displayEmail(data);
   },
   getPwnedPass: async (password) => {
     //spinner installed
-    let eleI = $("<i>");
-    eleI.addClass("fa fa-spinner fa-spin");
-    eleI.css("font-size", "24px");
-    $("#pwned-pass-btn").append(eleI);
+    pwnedDiv.empty();
+    const eleI = $("<div>")
+      .attr({
+        class: "spinner-border text-light m-3"
+      })
+    const spanEl = $("<span>")
+      .attr({
+        class: "sr-only"
+      })
+    eleI.append(spanEl)
+    $(pwnedDiv).append(eleI);
 
     const data = await $.get("/api/pwned/password/" + password);
     //spinner uninstalled
-    $(".fa-spinner").remove();
+    eleI.remove()
     pwnedAPI.displayPassword(data);
   },
   displayPassword: (data) => {
     if (data.match === true) {
       data.hashed = data.hashed.slice(36, data.hashed.length);
-      pwnedDiv.empty();
+      pwnedCard.removeClass("danger");
+      pwnedCard.removeClass("bg-success");
       const pEl = $("<p>")
         .text(`Oh no! Its looks like we found ${data.hashed} matches. Consider changing your credentials`)
         .attr({
-          id: "match",
           class: "text-center pt-3"
         });
       pwnedDiv.append(pEl);
       pwnedCard.addClass("danger");
     } else {
+      pwnedCard.removeClass("danger");
+      pwnedCard.removeClass("bg-success");
       pwnedCard.addClass("bg-success");
+      pEl = $("<p>")
+        .text(`Hooray! No matches found!`)
+        .attr({
+          class: "text-center pt-3"
+        });
+      pwnedDiv.append(pEl);
     }
-    setTimeout(function () {
-      $("#match").remove();
-      pwnedCard.attr("class", "veryDark");
-    }, 5000);
+  },
+  displayEmail: (data) => {
+    pwnedCard.removeClass("danger");
+    pwnedCard.removeClass("bg-success");
+    pwnedCard.addClass("danger");
+    if (data.length > 0) {
+      pEl = $("<p>")
+        .text(`Oh no! It looks like your account was found in the following data breaches:`)
+        .attr({
+          class: "text-center pt-3"
+        });
+      pwnedDiv.append(pEl);
+      data.forEach(breach => {
+        const h4El = $("<h4>")
+          .attr({
+            class: "text-center d-block"
+          })
+          .text(breach.Name);
+
+        const col = $("<div>")
+          .attr({
+            class: "col-12"
+          })
+          .append(h4El);
+
+        const row = $("<div>")
+          .attr({
+            class: "row"
+          }).append(col);
+        pwnedDiv.append(row);
+      })
+    }
+    else {
+      pwnedCard.removeClass("danger");
+      pwnedCard.removeClass("bg-success");
+      pwnedCard.addClass("bg-success");
+      pEl = $("<p>")
+        .text(`Hooray! No matches found!`)
+        .attr({
+          class: "text-center pt-3"
+        });
+      pwnedDiv.append(pEl);
+    }
   }
 };
