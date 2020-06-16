@@ -6,6 +6,7 @@ const db = require("../models");
 router.get("/", async (req, res) => {
   try {
     if (req.user) {
+      console.log(req.user.dataValues)
       res.render("user", { user: req.user });
     } else {
       res.redirect("/login");
