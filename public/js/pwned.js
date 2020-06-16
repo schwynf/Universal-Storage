@@ -93,9 +93,9 @@ const pwnedAPI = {
         });
       pwnedDiv.append(pEl);
       data.forEach(breach => {
-        const h4El = $("<h4>")
+        const h1El = $("<h1>")
           .attr({
-            class: "text-center d-block"
+            class: "text-center my-2"
           })
           .text(breach.Name);
 
@@ -103,7 +103,7 @@ const pwnedAPI = {
           .attr({
             class: "col-12"
           })
-          .append(h4El);
+          .append(h1El);
 
         const row = $("<div>")
           .attr({

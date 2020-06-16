@@ -37,7 +37,7 @@ const viewPassword = (e) => {
 };
 
 const API = {
-  saveExample: async (data) => {
+  savePassword: async (data) => {
     try {
       const res = await $.ajax({
         headers: {
@@ -52,14 +52,14 @@ const API = {
       console.error(error);
     }
   },
-  getExamples: async () => {
+  getPasswords: async () => {
     const data = await $.ajax({
       url: "/api/passwords",
       type: "GET"
     });
     return data;
   },
-  deleteExample: async (id) => {
+  deletePassword: async (id) => {
     const data = await $.ajax({
       url: "/api/passwords/" + id,
       type: "DELETE"
@@ -76,9 +76,9 @@ class entry {
   }
 }
 
-const refreshExamples = async () => {
+const refreshPasswords = async () => {
   try {
-    const data = await API.getExamples();
+    const data = await API.getPasswords();
     if (typeof data === "object") {
       const cards = data.map(entry => {
         const password = $("<p>")
@@ -230,8 +230,8 @@ const handleFormSubmit = async e => {
 
   const data = new entry(siteText, userText, encrypted.toString());
 
-  await API.saveExample(data);
-  await refreshExamples();
+  await API.savePassword(data);
+  await refreshPasswords();
 
 
   password.val("");
@@ -241,8 +241,8 @@ const handleFormSubmit = async e => {
 const handleDeleteBtnClick = async e => {
   const idToDelete = parseInt($(e.target).parent().parent()[0].dataset.id);
 
-  await API.deleteExample(idToDelete);
-  refreshExamples();
+  await API.deletePassword(idToDelete);
+  refreshPasswords();
 
 };
 

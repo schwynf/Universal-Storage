@@ -4,7 +4,7 @@ $(document).ready(() => {
   /*global CryptoJS, API*/
   /*eslint no-undef: "error"*/
 
-  refreshExamples();
+  refreshPasswords();
   submitBtn.on("click", handleFormSubmit);
   cardRow.on("click", ".del-btn", handleDeleteBtnClick);
   cardRow.on("click", ".view-btn", viewPassword);
