@@ -45,7 +45,8 @@ router.get("/api/passwords", async (req, res) => {
   }
 });
 
-router.post("/api/passwords",passport.authenticate("jwt", { session: false }), async (req, res) => {
+// passport.authenticate("jwt", { session: false }),
+router.post("/api/passwords", async (req, res) => {
   try {
     if (req.user) {
       req.body.userId = req.user.dataValues.id;
