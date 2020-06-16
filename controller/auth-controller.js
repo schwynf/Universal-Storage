@@ -69,6 +69,7 @@ router.post(
 );
 
 router.get("/logout", async (req, res) => {
+  // Error here after user is logged out due to time and they click logout button, because there is no req.user
   const record = {
     status: "LogOut",
     userId: req.user.dataValues.id

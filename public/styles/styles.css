@@ -2,8 +2,6 @@ body {
   font-family: "Comfortaa";
 }
 
-
-
 .invalid {
   background-color: #7e0000e0;
   color: white;
@@ -15,7 +13,7 @@ body {
 }
 
 select {
-  font-family: 'FontAwesome', 'sans-serif'
+  font-family: 'FontAwesome', 'sans-serif', 'Comfortaa'
 }
 
 .veryDark {
@@ -29,6 +27,11 @@ body {
 
 .table {
   color: #cccccc;
+}
+
+.box-shadow {
+  box-shadow: 0px 0px 5px 1px #181818;
+  border: 1px outset #181818;
 }
 
 .card-header {
@@ -46,6 +49,11 @@ hr {
 
 .danger {
   background-color: #c22d2d93;
+}
+
+#pwned-data {
+  max-height: 450px;
+  overflow-y: auto;
 }
 
 #stored-card, #add-card {
