@@ -178,7 +178,7 @@ const refreshPasswords = async () => {
 
         const card = $("<div>")
           .attr({
-            class: "card my-2 lightDark hvr-reveal",
+            class: "card my-1 lightDark hvr-reveal",
           })
           .append(cardBody);
 
