@@ -67,14 +67,19 @@ MIT
  ```
  
 ## Author Info 
- Email: schwynf@gmail.com<br>
- Name: Schwyn Francis<br>
- Profile Picture: <br> ![](https://avatars.githubusercontent.com/u/59147321?)
+ 
+ Name: Schwyn Francis <br>
+ <a href="https://github.com/Schwynf"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" /></a>
+ <a href="mailto:schwynf@gmail.com"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a> <br>
+ <img src="https://avatars.githubusercontent.com/u/59147321?" width="30%" />
  <br>
- Email: kriah0872@gmail.com<br>
- Name: Jonathan Hansen<br>
- Profile Picture: <br> ![](https://avatars.githubusercontent.com/u/58758929?) 
+ Name: Jonathan Hansen <br>
+ <a href="https://github.com/JonathanHansen98"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" /></a>
+ <a href="mailto:kriah0872@gmail.com"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a> <br>
+<img src="https://avatars.githubusercontent.com/u/58758929?" width="30%" />
+
  <br>
- Email: tding7@asu.edu<br>
- Name: Tongtong Ding<br>
- Profile Picture: <br> ![](https://avatars1.githubusercontent.com/u/59786540?) 
+ Name: Tongtong Ding
+ <a href="https://github.com/tongtongding"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" />  </a>
+ <a href="mailto:tding7@asu.edu"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a><br>
+ <img src="https://avatars1.githubusercontent.com/u/59786540?" width="30%" />
