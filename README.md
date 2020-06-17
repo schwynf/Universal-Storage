@@ -73,12 +73,13 @@ MIT
  <a href="mailto:schwynf@gmail.com"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a> <br>
  <img src="https://avatars.githubusercontent.com/u/59147321?" width="30%" />
  <br>
+ 
  Name: Jonathan Hansen <br>
  <a href="https://github.com/JonathanHansen98"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" /></a>
  <a href="mailto:kriah0872@gmail.com"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a> <br>
 <img src="https://avatars.githubusercontent.com/u/58758929?" width="30%" />
-
  <br>
+ 
  Name: Tongtong Ding <br>
  <a href="https://github.com/tongtongding"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" />  </a>
  <a href="mailto:tding7@asu.edu"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a><br>
