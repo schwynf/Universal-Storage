@@ -79,7 +79,7 @@ MIT
 <img src="https://avatars.githubusercontent.com/u/58758929?" width="30%" />
 
  <br>
- Name: Tongtong Ding
+ Name: Tongtong Ding <br>
  <a href="https://github.com/tongtongding"><img src="https://img.shields.io/static/v1?label=Contact&message=Github&color=lightgrey" />  </a>
  <a href="mailto:tding7@asu.edu"><img src="https://img.shields.io/badge/Contact-Email%20Me!-lightgrey" /></a><br>
  <img src="https://avatars1.githubusercontent.com/u/59786540?" width="30%" />
