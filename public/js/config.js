@@ -11,28 +11,28 @@ const submitBtn = $("#password-submit");
 const deleteButtons = $(".del-btn");
 const viewButtons = $(".view-btn");
 const copyButton = $("#copy-btn");
-const pwnedPassBtn = $("#pwned-pass-btn")
-const pwnedEmailBtn = $("#pwned-email-btn")
+const pwnedPassBtn = $("#pwned-pass-btn");
+const pwnedEmailBtn = $("#pwned-email-btn");
 const pwnedDiv = $("#pwned-data");
-const pwnedCard = $("#pwned-card")
+const pwnedCard = $("#pwned-card");
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];
-  const siteEl = ($(e.target).parent().parent()[0].children[1].children[0])
-  const userEl = ($(e.target).parent().parent()[0].children[1].children[1])
+  const siteEl = ($(e.target).parent().parent()[0].children[1].children[0]);
+  const userEl = ($(e.target).parent().parent()[0].children[1].children[1]);
   const siteText = $(siteEl).text();
   const userText = $(userEl).text();
   if ($(passEl).data().hidden === true) {
     const unencrypted = CryptoJS.AES.decrypt($(passEl).data().encrypt, `${siteText}${userText}`);
-    const unencryptText = unencrypted.toString(CryptoJS.enc.Utf8)
-    $(passEl).text(unencryptText)
-    $(passEl).data().hidden = false
-    $(e.target).text("Hide")
+    const unencryptText = unencrypted.toString(CryptoJS.enc.Utf8);
+    $(passEl).text(unencryptText);
+    $(passEl).data().hidden = false;
+    $(e.target).text("Hide");
   }
   else {
-    $(passEl).data().hidden = true
+    $(passEl).data().hidden = true;
     $(passEl).text($(passEl).data().encrypt.slice(0, 24));
-    $(e.target).text("View")
+    $(e.target).text("View");
   }
 };
 
@@ -102,7 +102,7 @@ const refreshPasswords = async () => {
           .attr({
             class: "btn btn-outline-light view-btn align-self-end mx-1 btn-block"
           })
-          .text("View")
+          .text("View");
 
         const delBtn = $("<button>")
           .attr({
@@ -114,7 +114,7 @@ const refreshPasswords = async () => {
           .attr({
             class: "d-flex flex-column justify-content-around px-2"
           })
-          .append([viewBtn, delBtn])
+          .append([viewBtn, delBtn]);
 
         const centerDiv = $("<div>")
           .attr({
@@ -249,11 +249,11 @@ const handleDeleteBtnClick = async e => {
 const clickCopy = () => {
   $("#generated").select();
   document.execCommand("copy");
-  $("#copy-btn").text("Copied!")
+  $("#copy-btn").text("Copied!");
 };
 
 const validateEmail = email => {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
-}
+};
 

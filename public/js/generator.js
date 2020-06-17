@@ -3,18 +3,18 @@ $("#generateBtn").on("click", async () => {
     const eleI = $("<div>")
       .attr({
         class: "spinner-border text-light m-3"
-      })
+      });
     const spanEl = $("<span>")
       .attr({
         class: "sr-only"
-      })
+      });
     eleI.append(spanEl);
     $("#passwordBox").append(eleI);
 
     const response = await $.ajax({
         url: "/api/generator",
         method: "GET"
-    })
+    });
 
     eleI.remove();
     const generatedEl = $("<input>")
@@ -31,7 +31,7 @@ $("#generateBtn").on("click", async () => {
         "data-placement": "top",
         title: "Copied!"
     })
-    .text("Copy")
+    .text("Copy");
     $("#passwordBox").empty();
     $("#passwordBox").append([generatedEl, copyButton]);
 });
