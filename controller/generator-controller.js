@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-const axios = require('axios');
+const axios = require("axios");
 
 
 let generatorURL = "https://www.passwordrandom.com/query?command=password&format=json&count=1";

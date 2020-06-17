@@ -27,15 +27,15 @@ const pwnedAPI = {
     const eleI = $("<div>")
       .attr({
         class: "spinner-border text-light m-3"
-      })
+      });
     const spanEl = $("<span>")
       .attr({
         class: "sr-only"
-      })
-    eleI.append(spanEl)
+      });
+    eleI.append(spanEl);
     $(pwnedDiv).append(eleI);
     const data = await $.get("/api/pwned/email/" + email);
-    eleI.remove()
+    eleI.remove();
     pwnedAPI.displayEmail(data);
   },
   getPwnedPass: async (password) => {
@@ -44,17 +44,17 @@ const pwnedAPI = {
     const eleI = $("<div>")
       .attr({
         class: "spinner-border text-light m-3"
-      })
+      });
     const spanEl = $("<span>")
       .attr({
         class: "sr-only"
-      })
-    eleI.append(spanEl)
+      });
+    eleI.append(spanEl);
     $(pwnedDiv).append(eleI);
 
     const data = await $.get("/api/pwned/password/" + password);
     //spinner uninstalled
-    eleI.remove()
+    eleI.remove();
     pwnedAPI.displayPassword(data);
   },
   displayPassword: (data) => {
@@ -74,7 +74,7 @@ const pwnedAPI = {
       pwnedCard.removeClass("bg-success");
       pwnedCard.addClass("bg-success");
       pEl = $("<p>")
-        .text(`Hooray! No matches found!`)
+        .text("Hooray! No matches found!")
         .attr({
           class: "text-center pt-3"
         });
@@ -87,7 +87,7 @@ const pwnedAPI = {
     pwnedCard.addClass("danger");
     if (data.length > 0) {
       pEl = $("<p>")
-        .text(`Oh no! It looks like your account was found in the following data breaches:`)
+        .text("Oh no! It looks like your account was found in the following data breaches:")
         .attr({
           class: "text-center pt-3"
         });
@@ -110,14 +110,14 @@ const pwnedAPI = {
             class: "row"
           }).append(col);
         pwnedDiv.append(row);
-      })
+      });
     }
     else {
       pwnedCard.removeClass("danger");
       pwnedCard.removeClass("bg-success");
       pwnedCard.addClass("bg-success");
       pEl = $("<p>")
-        .text(`Hooray! No matches found!`)
+        .text("Hooray! No matches found!")
         .attr({
           class: "text-center pt-3"
         });

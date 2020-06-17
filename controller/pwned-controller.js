@@ -40,7 +40,7 @@ router.get("/api/pwned/email/:id", async (req, res) => {
     });
     res.json(data.data);
   } catch (error) {
-    res.json({})
+    res.json({});
     console.error(error);
   }
 });

@@ -15,14 +15,14 @@ router.delete("/api/passwords/:id", async (req, res) => {
         where: {
           id: req.params.id
         }
-      })
-      res.json(data)
+      });
+      res.json(data);
     }
     else {
       res.redirect("/login");
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 });
 

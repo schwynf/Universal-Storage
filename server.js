@@ -27,8 +27,8 @@ app.engine(
   exphbs({
     defaultLayout: "main",
     handlebars: allowInsecurePrototypeAccess(Handlebars),
-    layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
+    layoutsDir: __dirname + "/views/layouts/",
+    partialsDir: __dirname + "/views/partials/"
   })
 );
 app.set("view engine", "handlebars");

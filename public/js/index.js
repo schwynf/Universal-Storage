@@ -14,10 +14,10 @@ $(document).ready(() => {
 
     pwnedPassword.val("");
     pwnedPassword.removeClass("invalid");
-  })
+  });
   pwnedEmailBtn.on("click", pwnedAPI.submitEmail);
   pwnedEmail.on("click", () => {
     pwnedEmail.val("");
     pwnedEmail.removeClass("invalid");
   });
-})
+});
