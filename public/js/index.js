@@ -3,6 +3,12 @@
 $(document).ready(() => {
   /*global CryptoJS, API*/
   /*eslint no-undef: "error"*/
+  $("#otherDiv").hide()
+  $("#site").change(function () {
+    if ($("#site option:selected").val() == "Other") {
+      $("#otherDiv").show();
+    }
+  });
 
   refreshPasswords();
   submitBtn.on("click", handleFormSubmit);

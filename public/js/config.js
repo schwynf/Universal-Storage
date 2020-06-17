@@ -15,6 +15,7 @@ const pwnedPassBtn = $("#pwned-pass-btn");
 const pwnedEmailBtn = $("#pwned-email-btn");
 const pwnedDiv = $("#pwned-data");
 const pwnedCard = $("#pwned-card");
+const ifOther = $("#ifOther");
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];
@@ -113,7 +114,7 @@ const refreshPasswords = async () => {
           })
           .text("Delete");
 
-          const rightDiv = $("<div>")
+        const rightDiv = $("<div>")
           .attr({
             class: "d-flex flex-column justify-content-around px-2"
           })
@@ -220,7 +221,7 @@ const refreshPasswords = async () => {
 const handleFormSubmit = async e => {
   e.preventDefault();
 
-  const siteText = site.val().trim();
+  const siteText = site.val() == "Other" ? ifOther.val() : site.val().trim();
   const passText = password.val().trim();
   const userText = username.val().trim();
 
@@ -237,8 +238,8 @@ const handleFormSubmit = async e => {
   await refreshPasswords();
 
 
-  password.val("");
-  username.val("");
+  $("#otherDiv").hide()
+  $("#pass-form").trigger("reset");
 };
 
 const handleDeleteBtnClick = async e => {
