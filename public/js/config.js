@@ -74,7 +74,10 @@ class entry {
     this.username = username;
     this.password = password;
   }
-}
+};
+
+
+
 
 const refreshPasswords = async () => {
   try {
@@ -178,7 +181,7 @@ const refreshPasswords = async () => {
 
         const card = $("<div>")
           .attr({
-            class: "card my-2 lightDark hvr-reveal",
+            class: "card my-1 lightDark hvr-reveal",
           })
           .append(cardBody);
 
