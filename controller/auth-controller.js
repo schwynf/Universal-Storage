@@ -11,7 +11,7 @@ const jwtSecret = require("../config/jwt-config");
 // Flash
 router.use(
   session({
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 6000000 },
     secret: "wootwoot",
     saveUninitialized: true,
     resave: true
@@ -39,7 +39,7 @@ router.post(
   (req, res) => {
     const payload = {
       email: req.user.email,
-      expires: Date.now() + parseInt(60000)
+      expires: Date.now() + parseInt(6000000)
     };
 
     req.login(payload, { session: false }, error => {
@@ -70,12 +70,17 @@ router.post(
 
 router.get("/logout", async (req, res) => {
   // Error here after user is logged out due to time and they click logout button, because there is no req.user
-  const record = {
-    status: "LogOut",
-    userId: req.user.dataValues.id
-  };
 
-  await db.history.create(record);
+  // maybe just an if(req.user) then create history
+
+  if (req.user) {
+    const record = {
+      status: "LogOut",
+      userId: req.user.dataValues.id
+    };
+  
+    await db.history.create(record);
+    }
 
   req.logout();
   res.clearCookie("jwt");
