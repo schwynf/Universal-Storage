@@ -74,7 +74,10 @@ class entry {
     this.username = username;
     this.password = password;
   }
-}
+};
+
+
+
 
 const refreshPasswords = async () => {
   try {

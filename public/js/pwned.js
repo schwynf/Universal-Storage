@@ -1,12 +1,23 @@
+class passReq {
+  constructor(hashed, firstFive, rest) {
+    this.hashed = hashed
+    this.firstFive = firstFive
+    this.rest = rest
+  }
+};
 const pwnedAPI = {
   submitPass: async () => {
     const passText = pwnedPassword.val().trim();
+    const hashed = CryptoJS.SHA1(passText).toString()
+    const firstFive = hashed.slice(0, 5);
+    const rest = hashed.slice(5, hashed.length).toUpperCase();
+    const passReqObj = new passReq(hashed, firstFive, rest)
     if (passText === "Please enter a valid password" || passText === "") {
       pwnedPassword.val("Please enter a valid password");
       pwnedPassword.addClass("invalid");
     }
     else {
-      pwnedAPI.getPwnedPass(passText);
+      pwnedAPI.getPwnedPass(passReqObj);
       pwnedPassword.val("");
     }
   },
@@ -38,7 +49,7 @@ const pwnedAPI = {
     eleI.remove()
     pwnedAPI.displayEmail(data);
   },
-  getPwnedPass: async (password) => {
+  getPwnedPass: async (passReq) => {
     //spinner installed
     pwnedDiv.empty();
     const eleI = $("<div>")
@@ -52,7 +63,8 @@ const pwnedAPI = {
     eleI.append(spanEl)
     $(pwnedDiv).append(eleI);
 
-    const data = await $.get("/api/pwned/password/" + password);
+    const data = await $.post(
+      "/api/pwned/password", passReq);
     //spinner uninstalled
     eleI.remove()
     pwnedAPI.displayPassword(data);
@@ -104,6 +116,7 @@ const pwnedAPI = {
             class: "col-12"
           })
           .append(h1El);
+
 
         const row = $("<div>")
           .attr({

@@ -3,12 +3,10 @@ const router = express.Router();
 const axios = require("axios");
 const CryptoJs = require("crypto-js");
 const pwnedKey = process.env.API_KEY;
-router.get("/api/pwned/password/:id", async (req, res) => {
+
+router.post("/api/pwned/password", async (req, res) => {
   try {
-    const hashed = CryptoJs.SHA1(req.params.id).toString();
-    const firstFive = hashed.slice(0, 5);
-    const rest = hashed.slice(5, hashed.length).toUpperCase();
-    const data = await axios.get(`https://api.pwnedpasswords.com/range/${firstFive}`, {
+    const data = await axios.get(`https://api.pwnedpasswords.com/range/${req.body.firstFive}`, {
       headers: {
         "Content-Type": "application/json",
         "hibp-api-key": pwnedKey
@@ -17,7 +15,7 @@ router.get("/api/pwned/password/:id", async (req, res) => {
     const resArr = data.data.split("\n");
     for (let index = 0; index < resArr.length; index++) {
       const sliced = resArr[index].slice(0,35);
-     if (sliced == rest) {
+     if (sliced == req.body.rest) {
        return res.json({
          sliced: sliced,
           hashed: resArr[index],
