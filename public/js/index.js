@@ -20,6 +20,10 @@ $(document).ready(() => {
     password.val("");
     password.removeClass("invalid");
   })
+  ifOther.on("click", () => {
+    ifOther.val("");
+    ifOther.removeClass("invalid");
+  })
   username.on("click", () => {
     username.val("");
     username.removeClass("invalid");
