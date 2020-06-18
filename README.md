@@ -6,11 +6,11 @@ This is a password manager application. The information is stored in a MySQL dat
 1. Stores all passwords in a secure MySQL database
 1. Military encrytion on passwords prior to database storage
 1. Random password generator
-1. Allows users to check whether their password or email has been compromised by data breaches.
+1. Allows user to check whether their password or email has been compromised by data breaches
 1. Session and JWT login verification
     
 ## Table of Contents 
- <ul><li><a href="#i">Installation</a></li><li><a href="#u">Usage</a></li><li><a href="#l">License</a></li><li><a href="#c">Contributing</a></li><li><a href="#t">Tests</a></li></ul> 
+ <ul><li><a href="#i">Installation</a></li><li><a href="#npm">NPM Packages</a></li><li><a href="#heroku">Heroku Deployement</a></li><li><a href="#u">Usage</a></li><li><a href="#l">License</a></li><li><a href="#c">Contributing</a></li><li><a href="#t">Tests</a></li></ul> 
  
 ## Installation <span id="i"></span> 
 1. Clone this repository.
@@ -33,6 +33,10 @@ This is a password manager application. The information is stored in a MySQL dat
     ```
     ./config/config.json
     ```
+1. Create a .env file and add API_KEY to use pwned button in application. Visit website to require an API key: [https://haveibeenpwned.com/API/Key](https://haveibeenpwned.com/API/Key)
+	 ```
+    API_KEY="YOUR KEY"
+    ```
 1. In the root directory of the project, start the server.
     ```
     node server
@@ -41,7 +45,7 @@ This is a password manager application. The information is stored in a MySQL dat
     ```
     http://localhost:8080
 
-## NPM Packages
+## NPM Packages <span id="npm"></span>
 
 | Package | Documentation |
 | ----------- | ----------- |
@@ -54,6 +58,13 @@ This is a password manager application. The information is stored in a MySQL dat
 | `bcrypt` | [BCrypt](https://www.npmjs.com/package/bcrypt) |
 | `connect-flash` | [Connect Flash for Express](https://www.npmjs.com/package/connect-flash) |
 | `dotenv` | [Dotenv](https://www.npmjs.com/package/dotenv) |
+| `axios` | [Axios](https://www.npmjs.com/package/axios) |
+
+## Heroku Deployment <span id="heroku"></span> 
+
+This project is deployed on Heroku. The link to web app is:
+
+[https://universal-storage.herokuapp.com/](https://universal-storage.herokuapp.com/)
  
 ## Usage <span id="u"></span> 
  Storing, creating, and validating passwords.
