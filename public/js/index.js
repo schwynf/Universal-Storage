@@ -16,8 +16,15 @@ $(document).ready(() => {
   cardRow.on("click", ".view-btn", viewPassword);
   $("#passwordBox").on("click", "#copy-btn", clickCopy);
   pwnedPassBtn.on("click", pwnedAPI.submitPass);
+  password.on("click", () => {
+    password.val("");
+    password.removeClass("invalid");
+  })
+  username.on("click", () => {
+    username.val("");
+    username.removeClass("invalid");
+  })
   pwnedPassword.on("click", () => {
-
     pwnedPassword.val("");
     pwnedPassword.removeClass("invalid");
   });

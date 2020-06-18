@@ -218,15 +218,31 @@ const refreshPasswords = async () => {
   }
 };
 
+const checkVal = (element) => {
+  const val = $(element).val()
+  if (val === "") {
+    element
+      .val("Please enter all information")
+      .addClass("invalid")
+    return false;
+  }
+}
+
 const handleFormSubmit = async e => {
   e.preventDefault();
 
   const siteText = site.val() == "Other" ? ifOther.val() : site.val().trim();
   const passText = password.val().trim();
   const userText = username.val().trim();
+  let otherVal = true;
 
-  if (userText == "" || passText == "") {
-    alert("Please fill out all input fields");
+  const passVal = checkVal(password);
+  const userVal = checkVal(username);
+  if (site.val() == "Other" && ifOther.val() == "") {
+    otherVal = checkVal(ifOther)
+  }
+
+  if (passVal == false || userVal == false || otherVal == false || passText == "Please enter all information" || userText == "Please enter all information" || siteText == "Please enter all information") {
     return;
   }
 
