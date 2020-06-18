@@ -3,6 +3,12 @@
 $(document).ready(() => {
   /*global CryptoJS, API*/
   /*eslint no-undef: "error"*/
+  $("#otherDiv").hide()
+  $("#site").change(function () {
+    if ($("#site option:selected").val() == "Other") {
+      $("#otherDiv").show();
+    }
+  });
 
   refreshPasswords();
   submitBtn.on("click", handleFormSubmit);
@@ -10,8 +16,19 @@ $(document).ready(() => {
   cardRow.on("click", ".view-btn", viewPassword);
   $("#passwordBox").on("click", "#copy-btn", clickCopy);
   pwnedPassBtn.on("click", pwnedAPI.submitPass);
+  password.on("click", () => {
+    password.val("");
+    password.removeClass("invalid");
+  })
+  ifOther.on("click", () => {
+    ifOther.val("");
+    ifOther.removeClass("invalid");
+  })
+  username.on("click", () => {
+    username.val("");
+    username.removeClass("invalid");
+  })
   pwnedPassword.on("click", () => {
-
     pwnedPassword.val("");
     pwnedPassword.removeClass("invalid");
   });

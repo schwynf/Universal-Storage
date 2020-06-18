@@ -15,6 +15,7 @@ const pwnedPassBtn = $("#pwned-pass-btn");
 const pwnedEmailBtn = $("#pwned-email-btn");
 const pwnedDiv = $("#pwned-data");
 const pwnedCard = $("#pwned-card");
+const ifOther = $("#ifOther");
 
 const viewPassword = (e) => {
   const passEl = $(e.target).parent().parent()[0].children[1].children[2];
@@ -113,7 +114,7 @@ const refreshPasswords = async () => {
           })
           .text("Delete");
 
-          const rightDiv = $("<div>")
+        const rightDiv = $("<div>")
           .attr({
             class: "d-flex flex-column justify-content-around px-2"
           })
@@ -217,15 +218,31 @@ const refreshPasswords = async () => {
   }
 };
 
+const checkVal = (element) => {
+  const val = $(element).val()
+  if (val === "") {
+    element
+      .val("Please enter all information")
+      .addClass("invalid")
+    return false;
+  }
+}
+
 const handleFormSubmit = async e => {
   e.preventDefault();
 
-  const siteText = site.val().trim();
+  const siteText = site.val() == "Other" ? ifOther.val() : site.val().trim();
   const passText = password.val().trim();
   const userText = username.val().trim();
+  let otherVal = true;
 
-  if (userText == "" || passText == "") {
-    alert("Please fill out all input fields");
+  const passVal = checkVal(password);
+  const userVal = checkVal(username);
+  if (site.val() == "Other" && ifOther.val() == "") {
+    otherVal = checkVal(ifOther)
+  }
+
+  if (passVal == false || userVal == false || otherVal == false || passText == "Please enter all information" || userText == "Please enter all information" || siteText == "Please enter all information") {
     return;
   }
 
@@ -237,8 +254,8 @@ const handleFormSubmit = async e => {
   await refreshPasswords();
 
 
-  password.val("");
-  username.val("");
+  $("#otherDiv").hide()
+  $("#pass-form").trigger("reset");
 };
 
 const handleDeleteBtnClick = async e => {
