@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         Passwords.belongsTo(models.user, {
           foreignKey: {
             allowNull: false
-          }
+          },
+          constraints: false
         });
       };
       return Passwords;

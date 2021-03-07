@@ -115,3 +115,21 @@ hr {
   transform: translateY(0);
   border-width: 4px;
 }
+
+#mobile-padding {
+  padding-top: 50px;
+}
+
+@media only screen and (max-width: 400px) {
+  #mobile-padding {
+    padding-top: 50px;
+  }
+
+  #site{
+    width:200px;
+  }
+  .select-padding{
+    padding-left: 60px;
+  }
+
+}

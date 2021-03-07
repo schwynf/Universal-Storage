@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade"
     });
     User.hasMany(models.passwords, {
-      onDelete: "cascade" 
+      onDelete: "cascade"
     });
   };
 
