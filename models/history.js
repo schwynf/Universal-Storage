@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     History.belongsTo(models.user, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      constraints: false
     });
   };
 
