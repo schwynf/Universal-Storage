@@ -89,7 +89,8 @@ const refreshPasswords = async () => {
           .text(entry.password.slice(0, 24))
           .attr({
             "data-encrypt": entry.password,
-            "data-hidden": true
+            "data-hidden": true,
+            class: "text-white text-wrap password-p"
           });
 
 
@@ -104,27 +105,27 @@ const refreshPasswords = async () => {
 
         const viewBtn = $("<button>")
           .attr({
-            class: "btn btn-outline-light view-btn align-self-end mx-1 btn-block"
+            class: "btn btn-outline-light view-btn align-self-end mx-1 btn-block w-50"
           })
           .text("View");
 
         const delBtn = $("<button>")
           .attr({
-            class: "btn btn-danger del-btn align-self-end mx-1 btn-block"
+            class: "btn btn-danger del-btn align-self-end mx-1 btn-block w-50"
           })
           .text("Delete");
 
-        const rightDiv = $("<div>")
-          .attr({
-            class: "d-flex flex-column justify-content-around px-2"
-          })
-          .append([viewBtn, delBtn]);
+        // const rightDiv = $("<div>")
+        //   .attr({
+        //     class: "d-flex flex-column justify-content-around d-block px-2"
+        //   })
+        //   .append([viewBtn, delBtn]);
 
         const centerDiv = $("<div>")
           .attr({
             class: "p-2 w-100"
           })
-          .append([site, username, password]);
+          .append([site, username, password, viewBtn, delBtn]);
 
         let className;
 
@@ -178,8 +179,8 @@ const refreshPasswords = async () => {
             class: "card-body d-flex flex-row",
             "data-id": entry.id
           })
-          .append([leftDiv, centerDiv, rightDiv]);
-
+          .append([leftDiv, centerDiv]);
+        //rightDiv
         const card = $("<div>")
           .attr({
             class: "card my-1 lightDark hvr-reveal",
